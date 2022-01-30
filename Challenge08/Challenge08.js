@@ -28,6 +28,11 @@
 
 const customerAndAge = (obj) => {
   // write your code here
+  let arr = [];
+  for (const data in obj) {
+    arr.push(`Customer Name :${data} , Age :${obj[data]}`);
+  }
+  return arr;
 };
 
 // -------------------------------------------------------------------------------------------------------
@@ -55,6 +60,7 @@ const customerAndAge = (obj) => {
 
 const getEntries = (obj) => {
   // write your code here
+ 
 };
 
 // -------------------------------------------------------------------------------------------------------
@@ -67,35 +73,41 @@ const getEntries = (obj) => {
 
 const courses = [
   {
-    course: 'Java',
-    Instructor: 'David',
-    Students: ['Lincoln', 'Ruth', 'Briana', 'Suzy', 'Greta'],
-    GroupName: 'Stars',
+    course: "Java",
+    Instructor: "David",
+    Students: ["Lincoln", "Ruth", "Briana", "Suzy", "Greta"],
+    GroupName: "Stars",
   },
   {
-    course: 'JavaScript',
-    Instructor: 'Van',
-    Students: ['Alphonso', 'Daley', 'Dax', 'Karter', 'Jorja'],
-    GroupName: 'Nerd-ware',
+    course: "JavaScript",
+    Instructor: "Van",
+    Students: ["Alphonso", "Daley", "Dax", "Karter", "Jorja"],
+    GroupName: "Nerd-ware",
   },
   {
-    course: 'Python',
-    Instructor: 'Delaney',
-    Students: ['Barney', 'Kalé', 'Alisha'],
-    GroupName: 'Whats-Up',
+    course: "Python",
+    Instructor: "Delaney",
+    Students: ["Barney", "Kalé", "Alisha"],
+    GroupName: "Whats-Up",
   },
   {
-    course: 'DotNet',
-    Instructor: 'Keanna',
-    Students: ['Oli', 'Gisselle', 'Pru'],
-    GroupName: 'Lol',
+    course: "DotNet",
+    Instructor: "Keanna",
+    Students: ["Oli", "Gisselle", "Pru"],
+    GroupName: "Lol",
   },
 ];
 
 const getInfo = (arr) => {
   let coursesName = [];
   let studentsName = [];
-  // write your code here
+  
+  arr.forEach((element) => {
+    coursesName.push(element.course);
+  });
+  for (let i = 0; i <= arr.length - 1; i++) {
+    arr[i].Students.forEach((ele) => studentsName.push(ele));
+  }
 
   return { coursesName, studentsName };
 };
@@ -107,7 +119,7 @@ const getInfo = (arr) => {
 // and return their info following the below syntax
 //
 // Input: ['Kalé', 'Alisha','Alphonso', 'Briana']
-// Output: 
+// Output:
 // [
 //   {
 //     Student: 'Kalé',
@@ -119,8 +131,18 @@ const getInfo = (arr) => {
 //  ------------------------------------------------------------------------------------------------------
 
 const getStudents = (arr) => {
-  // write your code here
 
+  let outcome = [];
+  for (let i = 0; i <= arr.length - 1; i++) {
+    let result = courses.filter((ele) => {
+      return ele.Students.indexOf(arr[i]) >= 0;
+    });
+    outcome.push({
+      Student: arr[i],
+      course: result[0].course,
+    });
+  }
+  return outcome;
 };
 
 module.exports = {
