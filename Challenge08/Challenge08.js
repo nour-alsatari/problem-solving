@@ -28,11 +28,13 @@
 
 const customerAndAge = (obj) => {
   // write your code here
-  let arr = [];
-  for (const data in obj) {
-    arr.push(`Customer Name :${data} , Age :${obj[data]}`);
+  let customerArr = [];
+
+  for (let customer in obj) {
+    customerArr.push(`Customer Name :${customer} , Age :${obj[customer]}`)
   }
-  return arr;
+
+  return customerArr;
 };
 
 // -------------------------------------------------------------------------------------------------------
@@ -59,8 +61,16 @@ const customerAndAge = (obj) => {
 // -------------------------------------------------------------------------------------------------------
 
 const getEntries = (obj) => {
-  // write your code here
- 
+  let arr = [];
+
+  for (let recipe in obj) {
+
+    arr.push(`${recipe}: ${obj[recipe]}`)
+
+  }
+
+  return arr
+
 };
 
 // -------------------------------------------------------------------------------------------------------
@@ -102,14 +112,14 @@ const getInfo = (arr) => {
   let coursesName = [];
   let studentsName = [];
   
-  arr.forEach((element) => {
-    coursesName.push(element.course);
-  });
-  for (let i = 0; i <= arr.length - 1; i++) {
-    arr[i].Students.forEach((ele) => studentsName.push(ele));
-  }
 
-  return { coursesName, studentsName };
+  arr.forEach(ele => {
+    coursesName.push(ele.course)
+    studentsName = studentsName.concat(ele.Students)
+  })
+
+  
+  return {coursesName, studentsName};
 };
 
 //  ------------------------------------------------------------------------------------------------------

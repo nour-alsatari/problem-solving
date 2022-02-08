@@ -19,7 +19,13 @@
 // ------------------------
 
 const objLat = (obj) => {
-    // write your code here
+
+    function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
+    return `my name is ${capitalizeFirstLetter(obj.firstName)} ${capitalizeFirstLetter(obj.lastName)} I am ${obj.age} YO, and I love ${obj.hobby}.`
+
 };
 
 // 2) ---------------------
@@ -83,8 +89,37 @@ const objLat = (obj) => {
 
 // ------------------------
 const cvFormatter = (arr) => {
-    
-    // write your code here
+
+    let filtered = arr.filter(ele => {
+        if (ele.yearsOfExperience > 1) {
+            return ele
+        }
+    })
+
+    let formatted = filtered.map(ele => {
+
+        let obj = {}
+
+        if (ele.firstName == null || ele.lastName == null) {
+            if (ele.firstName == null) {
+                obj["fullName"] = ele.lastName
+            }
+
+            if (ele.lastName == null) {
+                obj["fullName"] = ele.firstName
+            }
+        }
+        else {
+            obj["fullName"] = `${ele.firstName} ${ele.lastName}`
+        }
+
+
+        obj["tech"] = ele.tech;
+        return obj;
+
+    })
+
+    return formatted;
 };
 
 // 3) ---------------------
@@ -108,7 +143,44 @@ const cvFormatter = (arr) => {
 
 // ------------------------
 const applicationsStatics = (arr) => {
-    // write your code here
+
+    let result = {
+        python_Devs: 0,
+        javaScript_Devs: 0,
+        dotNet_Devs: 0,
+        java_Devs: 0,
+        totalApplicants: 0,
+        rejectedApplicants: 0,
+    }
+    arr.forEach((ele, index) => {
+
+        if (ele.tech == "Python") {
+            result.python_Devs++
+        } else if (ele.tech == "JS") {
+            result.javaScript_Devs++
+        } else if (ele.tech == ".Net") {
+            result.dotNet_Devs++
+        } else if (ele.tech == "Java") {
+            result.java_Devs++
+        }
+
+
+        result.totalApplicants = index + 1;
+
+
+        if (ele.firstName === null && ele.lastName === null)
+            result.rejectedApplicants++;
+        if (ele.firstName === "" && ele.lastName === "")
+            result.rejectedApplicants++;
+        if (ele.yearsOfExperience <= 1) {
+            result.rejectedApplicants++;
+        }
+
+
+
+    })
+    console.log(result);
+    return result;
 };
 
 // 4) ---------------------
@@ -118,8 +190,7 @@ const applicationsStatics = (arr) => {
 //
 //  given the school data, calculate the average score of the students of each class in each grade
 //  then change the avg value for the class
-//  EX:
-
+//  EX: 
 let data = {
     SchoolName: "David Academy",
     Capacity: 1000,
@@ -233,7 +304,23 @@ let data = {
 //  2- You need to round the average to the nearest lower number 
 
 const classesAvg = (data) => {
-    // write your code here
+   
+    data.grades.forEach(gradesaf => {
+
+        gradesaf.classes.forEach(classe => {
+            let sum = 0;
+            classe.classScores.forEach(ele => {
+                sum += ele;
+            })
+            classe.avg = Math.floor(sum / classe.classScores.length);
+
+        })
+
+
+
+    })
+
+    return data;
 };
 
 module.exports = { objLat, cvFormatter, applicationsStatics, classesAvg };
