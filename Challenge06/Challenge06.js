@@ -10,7 +10,7 @@
 // ------------------------
 
 const findMax = (arr)=>{
-    let max;
+    let max = 0
     // write your code here
     for (let i = 0 ; i < arr.length ; i++){
         if (arr[i] > max){
@@ -31,7 +31,7 @@ const findMax = (arr)=>{
 // ------------------------
 
 const sumNums = (arr)=>{
-    let sum;
+    let sum=0;
     for (let i = 0 ; i < arr.length ; i++ ){
         if (typeof arr[i] == "number"){
             sum += arr[i];
@@ -55,7 +55,7 @@ const reverseArray = (arr)=>{
     for (let i = arr.length-1 ; i >= 0 ; i-- ){
         reversedArray.push(arr[i]);
     }
-
+return reversedArray;
 }
 
 module.exports = {findMax , sumNums, reverseArray};
